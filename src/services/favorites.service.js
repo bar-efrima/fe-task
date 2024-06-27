@@ -1,5 +1,4 @@
 
-
 export async function getFavorites() {
   return new Promise((resolve) => {
     const favorites = localStorage.getItem("favorites");

@@ -15,7 +15,7 @@ function PokemonList({ onSelectPokemon }) {
           return await getPokemonDetailsByURL(pokemon.url);
         })
       );
-      setPokemons(detailedPokemonList);
+      setPokemons(detailedPokemonList); // Set the list of Pokemons
     };
 
     fetchData();
