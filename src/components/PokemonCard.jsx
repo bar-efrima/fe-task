@@ -1,9 +1,11 @@
+import React from 'react';
 
-function PokemonCard() {
+function PokemonCard({ pokemon, onClick}) {
   return (
-    <>
-      {/* Implement the  PokemonCard*/}
-    </>
+    <div className="pokemon-card" onClick={() => onClick(pokemon)}>
+      <h3>{pokemon.name}</h3>
+      <img src={pokemon.sprites.other.showdown.front_default} alt={pokemon.name} />
+    </div>
   );
 }
 
