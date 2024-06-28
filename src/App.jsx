@@ -29,7 +29,7 @@ function App() {
 
   return (
     <div className="app">
-       <FavoritesSideBar onSelectPokemon={handleSelectPokemon} favorites={favorites} />
+       <FavoritesSideBar onSelectPokemon={handleSelectPokemon} favorites={favorites} refreshFavorites={refreshFavorites} />
       <div className="main-content">
         <h1>Pokedex with Health.io</h1>
         {selectedPokemon ? (

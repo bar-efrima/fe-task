@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getPokemonDetailsByURL, capitalizeFirstLetter} from '../services/pokemon.service';
-import { addFavorite, isFavorite } from '../services/favorites.service';
+import { addFavorite, removeFavorite, isFavorite } from '../services/favorites.service';
 
 function PokemonDetails({ pokemon, onBack , refreshFavorites}) {
   const [pokemonDetails, setPokemonDetails] = useState(null);
@@ -23,7 +23,7 @@ function PokemonDetails({ pokemon, onBack , refreshFavorites}) {
     setCatchAttempt(true);
     return new Promise((resolve) => {
       setTimeout(() => {
-        const success = Math.random() > 0.5; // 50% chance of success
+        const success = Math.random() > 0.1; // 50% chance of success
         resolve(success);
       }, 2000); // Wait 1 second before resolving
     });
@@ -34,7 +34,7 @@ function PokemonDetails({ pokemon, onBack , refreshFavorites}) {
     const success = await tryToCatch();
     if (success) {
       await addFavorite(pokemonDetails);
-      refreshFavorites();
+      refreshFavorites(); // Refresh the list of favorite Pokemons
       setIsCaught(true);
       alert(`${pokemonDetails.name} was caught!`);
       
@@ -43,6 +43,13 @@ function PokemonDetails({ pokemon, onBack , refreshFavorites}) {
       alert(`${pokemonDetails.name} escaped. Try again!`);
     }
     setCatchAttempt(false);
+  };
+
+  const handleRelease = async () => {
+    await removeFavorite(pokemonDetails);
+    setIsCaught(false);
+    alert(`${pokemonDetails.name} was released!`);
+    refreshFavorites();
   };
 
   if (!pokemonDetails) return <div>Loading...</div>;
@@ -57,9 +64,13 @@ function PokemonDetails({ pokemon, onBack , refreshFavorites}) {
       <p>Weight: {Math.round(pokemonDetails.weight*100)/1000 + "kg"}</p>  
       <p>Height: {pokemonDetails.height*10 + "cm"}</p>
       <p>Abilities: {pokemonDetails.abilities.map(ability => capitalizeFirstLetter(ability)).join(', ')}</p>
-        <button onClick={handleCatch} disabled={isCaught || catchAttempt}>
-        {isCaught ? 'Caught' : catchAttempt ? 'Attempting...' : 'Catch'} 
+      {isCaught ? (
+        <button onClick={handleRelease}>Release</button>
+      ) : (
+        <button onClick={handleCatch} disabled={catchAttempt}>
+          {catchAttempt ? 'Attempting...' : 'Catch'}
         </button>
+      )}
     </div>
   );
 }

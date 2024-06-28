@@ -23,10 +23,13 @@ body {
   
   /* Favorites SideBar */
   .favorites-sidebar {
+    border-right: 2px solid #007bff;
     padding: 20px;
     width: 250px;
     height: 100vh;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
+  
   
   .favorites-sidebar h2 {
     font-size: 1.5rem;
@@ -41,7 +44,7 @@ body {
   }
   
   .favorites-list .pokemon-card {
-    width: 40%; 
+    width: 80%; 
     padding: 10px; 
   }
   .favorites-list .pokemon-card img {
@@ -141,9 +144,7 @@ body {
     background-color: #6c757d;
   }
   
-  button:not(:disabled):hover {
-    background-color: #0056b3;
-  }
+
   
   /* Responsive Design */
   /* @media (max-width: 768px) {
@@ -165,3 +166,33 @@ body {
     }
   }
    */
+   /* Add this at the end of your App.css file */
+   .favorite-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(50% - 10px); /* 2 cards in a row */
+  }
+  
+  .favorite-item .pokemon-card {
+    flex: 1;
+  }
+  
+  .remove-button {
+    background-color: #ffffff;
+    color: #c60000;
+    border: none;
+    font-size: 0.8rem;
+    border-radius: 0 0 10px 10px;
+    padding: 5px 0;
+    width: 100%; /* Make the button take full width of the container */
+    margin: 0; /* Remove margin */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  
+  .remove-button:hover {
+    background-color: #e8e8e8;
+  }
+  

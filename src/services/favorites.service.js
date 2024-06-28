@@ -21,6 +21,17 @@ export async function addFavorite(pokemon) {
   });
 }
 
+export function removeFavorite(pokemon) {
+  // Remove the pokemon from the favorites list
+  return new Promise((resolve) => {
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    favorites = favorites.filter(fav => fav.id !== pokemon.id);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    setTimeout(() => {
+      resolve(favorites);
+    }, 500);
+  });
+}
 export function isFavorite(pokemon) {
   const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
   return favorites.some(fav => fav.id === pokemon.id);
