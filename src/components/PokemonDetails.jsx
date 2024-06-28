@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getPokemonDetailsByURL, capitalizeFirstLetter} from '../services/pokemon.service';
 import { addFavorite, removeFavorite, isFavorite } from '../services/favorites.service';
+import backArrow from '../assets/Back.svg';
 
 function PokemonDetails({ pokemon, onBack , refreshFavorites}) {
   const [pokemonDetails, setPokemonDetails] = useState(null);
@@ -53,39 +54,40 @@ function PokemonDetails({ pokemon, onBack , refreshFavorites}) {
   };
 
   if (!pokemonDetails) return <div>Loading...</div>;
+  const formattedId = "#" + pokemonDetails.id.toString().padStart(3, '0');
 
   return (
     <div className="pokemon-details">
-      <button onClick={onBack}>Back to List</button>
-      <h2>{capitalizeFirstLetter(pokemonDetails.name)}</h2>
-      <img src={pokemonDetails.sprites.other.home.front_default} alt={pokemonDetails.name} />
-      <div className="types-container">
-        <p>Types:</p>
-        {pokemonDetails.types.map(type => (
-          <span key={type.type.name} className={`type-square ${type.type.name}`}>
-            {capitalizeFirstLetter(type.type.name)}
-          </span>
-        ))}
+      <img
+        src={backArrow}
+        alt="Back"
+        className="back-arrow"
+        onClick={onBack}
+      />
+      <div className="details-header">
+        <h2>{capitalizeFirstLetter(pokemonDetails.name)}</h2>
+        <h5>{formattedId}</h5>
       </div>
-      <p>Weight: {Math.round(pokemonDetails.weight*100)/1000 + "kg"}</p>  
-      <p>Height: {pokemonDetails.height*10 + "cm"}</p>
-      <div className="abilities-container">
-        <p>Abilities:</p>
-        {pokemonDetails.abilities.map(ability => (
-          <span key={ability.ability.name} className="ability-square">
-            {capitalizeFirstLetter(ability.ability.name)}
-          </span>
-        ))}
+      <div className="details-body">
+        <img src={pokemonDetails.sprites.other.home.front_default} alt={pokemonDetails.name} className="pokemon-image" />
+        <div className="details-info">
+          <h3> Pokémon Info</h3>
+          <p>Types: <strong>{pokemonDetails.types.map(type => capitalizeFirstLetter(type)).join(', ')}</strong></p>
+          <p>Weight: <strong>{Math.round(pokemonDetails.weight * 100) / 1000} kg</strong></p>
+          <p>Height: <strong>{pokemonDetails.height * 10} cm</strong></p>
+          <p>Abilities: <strong>{pokemonDetails.abilities.map(ability => capitalizeFirstLetter(ability)).join(', ')}</strong></p>
+        </div>
       </div>
       {isCaught ? (
-        <button onClick={handleRelease}>Release</button>
+        <button onClick={handleRelease} className="catch-button">Release</button>
       ) : (
-        <button onClick={handleCatch} disabled={catchAttempt}>
+        <button onClick={handleCatch} disabled={catchAttempt} className="catch-button">
           {catchAttempt ? 'Attempting...' : 'Catch'}
         </button>
       )}
     </div>
   );
 }
+
 
 export default PokemonDetails;

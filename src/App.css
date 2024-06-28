@@ -84,8 +84,8 @@ body {
 }
 
 .remove-button {
-  background-color: #ffffff;
-  color: #c60000;
+  background-color: #EA5D60;
+  color: #ffffff;
   border: none;
   font-size: 0.8rem;
   border-radius: 0 0 10px 10px;
@@ -97,7 +97,7 @@ body {
 }
 
 .remove-button:hover {
-  background-color: #e8e8e8;
+  color: #e8e8e8;
 }
 .favorites-list .pokemon-card:hover {
   transform: scale(1.0);
@@ -163,40 +163,63 @@ body {
   color: #343a40;
 }
 
+
 /* Pokemon Details */
 .pokemon-details {
   background-color: #ffffff;
   border: 2px solid #b8b8b8;
   border-radius: 10px;
   padding: 20px;
-  width: 80%;
-  text-align: center;
-  margin: 20px auto; 
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
+  width: 500px;
+  
+  text-align: left;
+  margin: 20px 0;
 }
 
-.pokemon-details h2 {
-  font-size: 2rem;
+.back-arrow {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
   margin-bottom: 10px;
 }
 
-.pokemon-details img {
+.back-button:hover {
+  background-color: #0056b3;
+}
+
+.details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.details-body {
+  display: flex;
+  align-items: flex-start;
+}
+
+.pokemon-image {
   width: 150px;
   height: 150px;
   object-fit: cover;
-  margin-bottom: 10px;
+  margin-right: 20px;
 }
 
-.pokemon-details p {
+.details-info {
+  flex: 1;
+}
+
+.details-info p {
   margin: 5px 0;
   font-size: 1rem;
 }
 
-/* Button Styles */
-button {
-  background-color: #007bff;
+.details-info strong {
+  font-weight: bold;
+}
+
+.catch-button {
+  background-color: #EA5D60;
   color: #ffffff;
   border: none;
   border-radius: 5px;
@@ -204,15 +227,19 @@ button {
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: 100%;
+  margin-top: 20px;
 }
 
-button:disabled {
-  background-color: #f0f0f0;
+.catch-button:disabled {
+  background-color: #F2F2F2;
 }
 
-button:not(:disabled):hover {
-  background-color: #f0f0f0;
+.catch-button:not(:disabled):hover {
+  background-color: #F2F2F2;
+  color: #747476;
 }
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -230,7 +257,7 @@ button:not(:disabled):hover {
     height: auto;
     position: static;
     border-right: none;
-    border-bottom: 2px solid #007bff;
+
   }
 }
 
