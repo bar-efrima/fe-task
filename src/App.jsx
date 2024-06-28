@@ -5,6 +5,7 @@ import { getPokemons, getPokemonDetailsByURL } from './services/pokemon.service'
 import { getFavorites, addFavorite, isFavorite } from './services/favorites.service';
 import PokemonList from './components/PokemonList';
 import PokemonDetails from './components/PokemonDetails';
+import FavoritesSideBar from './components/FavoritesSideBar';
 
 function App() {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
@@ -19,14 +20,17 @@ function App() {
 
 
   return (
-    <>
-    <h1>Pokedex with Health.io</h1>
-    {selectedPokemon ? ( 
-      <PokemonDetails pokemon={selectedPokemon} onBack={handleBackToList} /> // Show the Pokemon details if a Pokemon is selected
-    ) : (
-      <PokemonList onSelectPokemon={handleSelectPokemon} /> // Show the list of Pokemons if no Pokemon is selected
-    )}
-    </>
+    <div className="app">
+      <FavoritesSideBar onSelectPokemon={handleSelectPokemon} />
+      <div className="main-content">
+        <h1>Pokedex with Health.io</h1>
+        {selectedPokemon ? (
+          <PokemonDetails pokemon={selectedPokemon} onBack={handleBackToList} />
+        ) : (
+          <PokemonList onSelectPokemon={handleSelectPokemon} />
+        )}
+      </div>
+    </div>
   );
 }
 

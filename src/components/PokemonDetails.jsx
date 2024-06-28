@@ -51,11 +51,12 @@ function PokemonDetails({ pokemon, onBack }) {
       <h2>{capitalizeFirstLetter(pokemonDetails.name)}</h2>
       <img src={pokemonDetails.sprites.front_default} alt={pokemonDetails.name} />
       <p>Types: {pokemonDetails.types.map(type => capitalizeFirstLetter(type)).join(', ')}</p>
-      <p>Weight: {pokemonDetails.weight}</p>
-      <p>Height: {pokemonDetails.height}</p>
+      {/* Weight is in hectogram by by default */}
+      <p>Weight: {Math.round(pokemonDetails.weight*100)/1000 + "kg"}</p>  
+      <p>Height: {pokemonDetails.height*10 + "cm"}</p>
       <p>Abilities: {pokemonDetails.abilities.map(ability => capitalizeFirstLetter(ability)).join(', ')}</p>
         <button onClick={handleCatch} disabled={isCaught || catchAttempt}>
-        {isCaught ? 'Caught' : catchAttempt ? 'Attempting...' : 'Catch'}
+        {isCaught ? 'Caught' : catchAttempt ? 'Attempting...' : 'Catch'} 
         </button>
     </div>
   );

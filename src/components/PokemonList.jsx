@@ -8,14 +8,14 @@ function PokemonList({ onSelectPokemon }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      // get the list of Pokemons
       const pokemonList = await getPokemons();
+      // Fetch the list of Pokemon
       const detailedPokemonList = await Promise.all(
         pokemonList.map(async (pokemon) => {
           return await getPokemonDetailsByURL(pokemon.url);
         })
       );
-      setPokemons(detailedPokemonList); // Set the list of Pokemons
+      setPokemons(detailedPokemonList);
     };
 
     fetchData();
