@@ -59,11 +59,24 @@ function PokemonDetails({ pokemon, onBack , refreshFavorites}) {
       <button onClick={onBack}>Back to List</button>
       <h2>{capitalizeFirstLetter(pokemonDetails.name)}</h2>
       <img src={pokemonDetails.sprites.other.home.front_default} alt={pokemonDetails.name} />
-      <p>Types: {pokemonDetails.types.map(type => capitalizeFirstLetter(type)).join(', ')}</p>
-      {/* Weight is in hectogram by by default */}
+      <div className="types-container">
+        <p>Types:</p>
+        {pokemonDetails.types.map(type => (
+          <span key={type.type.name} className={`type-square ${type.type.name}`}>
+            {capitalizeFirstLetter(type.type.name)}
+          </span>
+        ))}
+      </div>
       <p>Weight: {Math.round(pokemonDetails.weight*100)/1000 + "kg"}</p>  
       <p>Height: {pokemonDetails.height*10 + "cm"}</p>
-      <p>Abilities: {pokemonDetails.abilities.map(ability => capitalizeFirstLetter(ability)).join(', ')}</p>
+      <div className="abilities-container">
+        <p>Abilities:</p>
+        {pokemonDetails.abilities.map(ability => (
+          <span key={ability.ability.name} className="ability-square">
+            {capitalizeFirstLetter(ability.ability.name)}
+          </span>
+        ))}
+      </div>
       {isCaught ? (
         <button onClick={handleRelease}>Release</button>
       ) : (

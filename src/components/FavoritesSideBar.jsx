@@ -1,17 +1,38 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import PokemonCard from './PokemonCard';
 import { removeFavorite } from '../services/favorites.service';
+import Filter from './Filter';
 
 function FavoritesSideBar({ onSelectPokemon, favorites, refreshFavorites }) {
+  const [filteredFavorites, setFilteredFavorites] = useState(favorites);
+
+  useEffect(() => {
+    setFilteredFavorites(favorites);
+  }, [favorites]);
+
+  useEffect(() => {
+    handleFilter('', 'All');
+  }, [favorites]);
+
   const handleRemove = async (pokemon) => {
     await removeFavorite(pokemon);
     refreshFavorites();
   };
+  const handleFilter = (name, type) => {
+    const filtered = favorites.filter((pokemon) => {
+      const matchesName = pokemon.name.toLowerCase().includes(name.toLowerCase());
+      const matchesType = type === 'All' || pokemon.types.some(t => t.toLowerCase() === type.toLowerCase());
+      return matchesName && matchesType;
+    });
+    setFilteredFavorites(filtered);
+  };
+
   return (
     <aside className="favorites-sidebar">
-      <h2>Caught List</h2>
+      <Filter onFilter={handleFilter} />
       <div className="favorites-list">
-      {favorites.map((pokemon) => (
+      {filteredFavorites.map((pokemon) => (
           <div key={pokemon.id} className="favorite-item">
             <PokemonCard pokemon={pokemon} onClick={onSelectPokemon} />
             <button onClick={() => handleRemove(pokemon)} className="remove-button">Remove</button>

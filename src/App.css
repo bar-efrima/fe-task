@@ -27,6 +27,11 @@ body {
   z-index: 1000;
 }
 
+.favorite-count {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
 /* .app-logo {
   width: 50px;
   height: 50px;
@@ -164,9 +169,12 @@ body {
   border: 2px solid #b8b8b8;
   border-radius: 10px;
   padding: 20px;
-  width: 300px;
+  width: 80%;
   text-align: center;
-  margin: 20px 0;
+  margin: 20px auto; 
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
 }
 
 .pokemon-details h2 {
@@ -225,3 +233,20 @@ button:not(:disabled):hover {
     border-bottom: 2px solid #007bff;
   }
 }
+
+/* Filter Styles */
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-container input,
+.filter-container select {
+  padding: 8px;
+  border: 1px solid #bfbfbf;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
