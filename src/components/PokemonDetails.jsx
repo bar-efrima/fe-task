@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getPokemonDetailsByURL, capitalizeFirstLetter} from '../services/pokemon.service';
 import { addFavorite, isFavorite } from '../services/favorites.service';
 
-function PokemonDetails({ pokemon, onBack }) {
+function PokemonDetails({ pokemon, onBack , refreshFavorites}) {
   const [pokemonDetails, setPokemonDetails] = useState(null);
   const [isCaught, setIsCaught] = useState(false);
   const [catchAttempt, setCatchAttempt] = useState(false);
@@ -34,8 +34,10 @@ function PokemonDetails({ pokemon, onBack }) {
     const success = await tryToCatch();
     if (success) {
       await addFavorite(pokemonDetails);
+      refreshFavorites();
       setIsCaught(true);
       alert(`${pokemonDetails.name} was caught!`);
+      
 
     } else {
       alert(`${pokemonDetails.name} escaped. Try again!`);
@@ -49,7 +51,7 @@ function PokemonDetails({ pokemon, onBack }) {
     <div className="pokemon-details">
       <button onClick={onBack}>Back to List</button>
       <h2>{capitalizeFirstLetter(pokemonDetails.name)}</h2>
-      <img src={pokemonDetails.sprites.front_default} alt={pokemonDetails.name} />
+      <img src={pokemonDetails.sprites.other.home.front_default} alt={pokemonDetails.name} />
       <p>Types: {pokemonDetails.types.map(type => capitalizeFirstLetter(type)).join(', ')}</p>
       {/* Weight is in hectogram by by default */}
       <p>Weight: {Math.round(pokemonDetails.weight*100)/1000 + "kg"}</p>  

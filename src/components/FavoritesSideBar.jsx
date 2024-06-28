@@ -1,19 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { getFavorites } from '../services/favorites.service';
+import React from 'react';
 import PokemonCard from './PokemonCard';
 
-function FavoritesSideBar({ onSelectPokemon }) {
-  const [favorites, setFavorites] = useState([]);
-
-  useEffect(() => {
-    const fetchFavorites = async () => {
-      const favoritePokemons = await getFavorites();
-      setFavorites(favoritePokemons);
-    };
-
-    fetchFavorites();
-  }, []);
-
+function FavoritesSideBar({ onSelectPokemon, favorites }) {
   return (
     <aside className="favorites-sidebar">
       <h2>Caught List</h2>
