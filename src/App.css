@@ -64,8 +64,9 @@ body {
 .favorites-sidebar {
   padding: 20px;
   width: 250px;
-  height: 100%;
-  padding-top: 30px;
+  height: calc(100vh - 80px); /* based on the header height */
+  padding-top: 40px; 
+  overflow-y: auto;
 }
 
 .favorites-sidebar h2 {
@@ -226,8 +227,8 @@ body {
 }
 
 .pokemon-image {
-  width: 250px;
-  height: 250px;
+  width: 240px;
+  height: 240px;
   object-fit: cover;
   margin-right: 20px;
 }
@@ -261,6 +262,7 @@ body {
   transition: background-color 0.1s ease;
   width: 100%;
   margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .catch-button:disabled {
@@ -328,13 +330,13 @@ body {
 .search-icon {
   position: absolute;
   left: 10px;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
 }
 
 .search-bar input {
   padding-left: 80px; 
-  padding: 8px;
+  padding: 10px 10px 10px 35px; /* Add padding-left to accommodate the icon */;
   border-radius: 5px;
   font-size: 1rem;
   width: 100%;
@@ -422,4 +424,16 @@ body {
 
 h5 {
   color: #8d8d8d;
+}
+
+/* Attempts Counter */
+.attempts-counter {
+  font-size: 1rem;
+  color: #343a40;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.daily-attemps{
+  padding-bottom: 20px;
 }

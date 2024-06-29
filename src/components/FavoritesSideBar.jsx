@@ -21,7 +21,11 @@ function FavoritesSideBar({ onSelectPokemon, favorites, refreshFavorites, showAl
   const handleRemove = async (pokemon) => {
     await removeFavorite(pokemon);
     refreshFavorites();
+    
     showAlert(`${capitalizeFirstLetter(pokemon.name)} has been released!`);
+    
+    setIsCaught(false);
+    
     
   };
 
