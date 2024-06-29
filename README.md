@@ -10,6 +10,7 @@ This Pokédex web application is built using React and the Pokémon API. The app
 - **Local Storage**: Used for storing caught Pokémon data.
 - **CSS Framework/UI Library**: Custom CSS for styling.
 - **Network Requests**: Used Axios for fetching data from the Pokémon API.
+- **Vite**: Used for setting up the React application.
 
 ## Features
 
@@ -39,10 +40,13 @@ This Pokédex web application is built using React and the Pokémon API. The app
 2. **Install the dependencies**:
     ```bash
     npm install
-3. **Start the Application**:
+4. **Start the Application**:
+    ```bash
+    npm install vite
+4. **Start the Application**:
     ```bash
     npm run dev
-4. **Access the Application**:
+5. **Access the Application**:
 Open your browser and navigate to http://localhost:3000.
 
 ## Components
