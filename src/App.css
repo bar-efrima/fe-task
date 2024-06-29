@@ -13,6 +13,7 @@ body {
   color: #343a40;
   margin: 0;
   padding: 0;
+ 
 }
 
 /* App Container */
@@ -108,6 +109,7 @@ body {
 
 .remove-button:hover {
   color: #e8e8e8;
+  background-color: #cc5052;
 }
 .favorites-list .pokemon-card:hover {
   transform: scale(1.0);
@@ -135,7 +137,9 @@ body {
   flex: 1;
   padding: 20px;
   padding-top: 50px;
-  background-color: #e9ecef;
+  background-color: #f8f8f8;
+  background-image: url('./assets/Background_Patten.png');
+  background-repeat: repeat; /* Ensure the pattern repeats */
 }
 
 /* Pokemon List */
@@ -144,12 +148,14 @@ body {
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
+  
 }
 
 /* Pokemon Card */
 .pokemon-card {
   background-color: #ffffff;
   border-radius: 10px;
+  box-shadow: #0000000b 0px 0px 10px 0px;
   padding: 10px;
   width: 150px;
   text-align: center;
@@ -176,14 +182,14 @@ body {
 /* Pokemon Details */
 
 .pokemon-details-card{
+  
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  
 }
 
+
 .pokemon-details {
-  /* background: linear-gradient(to bottom, #FFFFFF, #e7e6e6); */
   box-shadow: #0000001d 0px 0px 20px 0px; 
   background: #FFFFFF;
   border: none;
@@ -208,6 +214,10 @@ body {
   align-items: center;
   color: #000000;
   font-weight: bold;
+}
+
+.details-header h3{
+  color: #8d8d8d;
 }
 
 .details-body {
@@ -323,7 +333,7 @@ body {
 }
 
 .search-bar input {
-  padding-left: 40px; /* Add space for the search icon */
+  padding-left: 80px; 
   padding: 8px;
   border-radius: 5px;
   font-size: 1rem;
@@ -373,5 +383,43 @@ body {
   height: 100%;
 }
 
+/* Pagination Controls */
+.pagination-controls {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  margin-top: 20px;
+}
 
+.pagination-controls button {
+  background-color: #30A7d7;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 0 10px;
+}
 
+.pagination-controls button:disabled {
+  background-color: #E2E2E2;
+  color: #989898
+}
+
+.pagination-controls button:not(:disabled):hover {
+  background-color: #0056b3;
+}
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: top;
+  height: 100vh; 
+  font-size: 2rem; 
+  color: #007bff; 
+}
+
+h5 {
+  color: #8d8d8d;
+}

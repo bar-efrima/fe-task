@@ -6,8 +6,7 @@ import PokemonList from './components/PokemonList';
 import PokemonDetails from './components/PokemonDetails';
 import FavoritesSideBar from './components/FavoritesSideBar';
 import Header from './components/Header';
-import logo from './assets/react.svg'; // Import your logo image
-import Alert from './components/Alert'; // Import the Alert component
+import Alert from './components/Alert'; 
 
 
 function App() {
@@ -42,7 +41,7 @@ function App() {
 
   return (
     <div className="app">
-       <Header logo={logo} favoriteCount={favorites.length} />
+       <Header favoriteCount={favorites.length} />
        <FavoritesSideBar onSelectPokemon={handleSelectPokemon} favorites={favorites} refreshFavorites={refreshFavorites} showAlert={showAlert} />
       <div className="main-content">
 

@@ -1,7 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import PokemonCard from './PokemonCard';
-import { removeFavorite, capitalizeFirstLetter} from '../services/favorites.service';
+import { removeFavorite } from '../services/favorites.service';
+import {capitalizeFirstLetter} from '../services/pokemon.service';
 
 import Filter from './Filter';
 

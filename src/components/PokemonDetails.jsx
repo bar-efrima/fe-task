@@ -27,7 +27,7 @@ function PokemonDetails({ pokemon, onBack , refreshFavorites, showAlert}) {
     setCatchAttempt(true);
     return new Promise((resolve) => {
       setTimeout(() => {
-        const success = Math.random() > 0.1; // 50% chance of success
+        const success = Math.random() > 0.7; // 70% chance of success
         resolve(success);
       }, 3000); // Wait 3 seconds before resolving
     });
@@ -68,7 +68,7 @@ function PokemonDetails({ pokemon, onBack , refreshFavorites, showAlert}) {
         onClick={onBack}
       />
       <div className="details-header">
-        <h2>{capitalizeFirstLetter(pokemonDetails.name)}</h2>
+        <h1>{capitalizeFirstLetter(pokemonDetails.name)}</h1>
         <h3>{formattedId}</h3>
       </div>
       <div className="details-body">

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Header({ logo, favoriteCount }) {
+function Header({ favoriteCount }) {
   return (
     <header className="app-header">
         <h1>Pokédex</h1>

@@ -3,10 +3,10 @@ import axios from 'axios';
 // Base URL for the Pokémon API
 const API_URL = 'https://pokeapi.co/api/v2/pokemon';
 
-export async function getPokemons(limit = 151) { // V1 have 151 Pokemons
+export async function getPokemons(limit = 21, offset = 0) { // V1 have 151 Pokemons
   // Fetch the list of pokemons from the API
   try {
-    const response = await axios.get(`${API_URL}?limit=${limit}`);
+    const response = await axios.get(`${API_URL}?limit=${limit}&offset=${offset}`);;
     // return the list of Pokemon
     return response.data.results;
   } catch (error) {
