@@ -42,11 +42,10 @@ This Pokédex web application is built using React and the Pokémon API. The app
 3. **Start the Application**:
     ```bash
     npm run dev
-4. Access the Application:
+4. **Access the Application**:
 Open your browser and navigate to http://localhost:3000.
 
-## Application Functionality
-# Components
+## Components
 ● FavoritesSidebar: Manages and displays the caught Pokémon.
 ● PokemonList: Displays all Pokémon and supports pagination.
 ● PokemonCard: Represents individual Pokémon cards.
@@ -54,6 +53,7 @@ Open your browser and navigate to http://localhost:3000.
 ● Header: Displays the app logo and count of caught Pokémon.
 ● Filter: Provides search and filter functionality for caught Pokémon.
 ● Alert: Displays temporary messages for user actions.
+
 # Services
 pokemon.service.js: Contains functions for fetching Pokémon list and details.
 favorites.service.js: Contains functions for managing caught Pokémon data in local storage.
