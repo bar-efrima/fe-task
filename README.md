@@ -46,21 +46,21 @@ This Pokédex web application is built using React and the Pokémon API. The app
 Open your browser and navigate to http://localhost:3000.
 
 ## Components
-● FavoritesSidebar: Manages and displays the caught Pokémon.
-● PokemonList: Displays all Pokémon and supports pagination.
-● PokemonCard: Represents individual Pokémon cards.
-● PokemonDetails: Shows detailed information and catch/release functionality for selected Pokémon.
-● Header: Displays the app logo and count of caught Pokémon.
-● Filter: Provides search and filter functionality for caught Pokémon.
-● Alert: Displays temporary messages for user actions.
+- **FavoritesSidebar:** Manages and displays the caught Pokémon.
+- **PokemonList:** Displays all Pokémon and supports pagination.
+- **PokemonCard:** Represents individual Pokémon cards.
+- **PokemonDetails:** Shows detailed information and catch/release functionality for selected Pokémon.
+- **Header:** Displays the app logo and count of caught Pokémon.
+- **Filter:** Provides search and filter functionality for caught Pokémon.
+- **Alert:** Displays temporary messages for user actions.
 
 # Services
-pokemon.service.js: Contains functions for fetching Pokémon list and details.
-favorites.service.js: Contains functions for managing caught Pokémon data in local storage.
+- **pokemon.service.js:** Contains functions for fetching Pokémon list and details.
+- **favorites.service.js:** Contains functions for managing caught Pokémon data in local storage.
 
 ## Acknowledgements
-Pokémon API: providing the Pokémon data.
-Fonts: The application uses the Flexo-Medium font. 
-Background Pattern: The background pattern used in the application is sourced from the official Pokémon website.
-React: Built with React.
-Axios: Network requests are handled using Axios.
+- Pokémon API: providing the Pokémon data.
+- Fonts: The application uses the Flexo-Medium font. 
+- Background Pattern: The background pattern used in the application is sourced from the official Pokémon website.
+- React: Built with React.
+- Axios: Network requests are handled using Axios.
