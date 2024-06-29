@@ -40,7 +40,7 @@ This Pokédex web application is built using React and the Pokémon API. The app
 2. **Install the dependencies**:
     ```bash
     npm install
-4. **Start the Application**:
+4. **Install vite**:
     ```bash
     npm install vite
 4. **Start the Application**:
