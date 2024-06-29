@@ -7,10 +7,13 @@ import PokemonDetails from './components/PokemonDetails';
 import FavoritesSideBar from './components/FavoritesSideBar';
 import Header from './components/Header';
 import logo from './assets/react.svg'; // Import your logo image
+import Alert from './components/Alert'; // Import the Alert component
+
 
 function App() {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [favorites, setFavorites] = useState([]);
+  const [alertMessage, setAlertMessage] = useState('');
 
   useEffect(() => {
     refreshFavorites();
@@ -29,18 +32,27 @@ function App() {
     setFavorites(favoritePokemons);
   };
 
+  const showAlert = (message) => {
+    setAlertMessage(message);
+  };
+
+  const closeAlert = () => {
+    setAlertMessage('');
+  };
+
   return (
     <div className="app">
        <Header logo={logo} favoriteCount={favorites.length} />
-       <FavoritesSideBar onSelectPokemon={handleSelectPokemon} favorites={favorites} refreshFavorites={refreshFavorites} />
+       <FavoritesSideBar onSelectPokemon={handleSelectPokemon} favorites={favorites} refreshFavorites={refreshFavorites} showAlert={showAlert} />
       <div className="main-content">
 
         {selectedPokemon ? (
-          <PokemonDetails pokemon={selectedPokemon} onBack={handleBackToList} refreshFavorites={refreshFavorites} favorites={favorites}/>
+          <PokemonDetails pokemon={selectedPokemon} onBack={handleBackToList} refreshFavorites={refreshFavorites} favorites={favorites} showAlert={showAlert} />
         ) : (
           <PokemonList onSelectPokemon={handleSelectPokemon} />
         )}
       </div>
+      {alertMessage && <Alert message={alertMessage} onClose={closeAlert} />}
     </div>
   );
 }

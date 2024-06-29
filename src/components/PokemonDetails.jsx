@@ -5,7 +5,7 @@ import backArrow from '../assets/Back.svg';
 import ball from '../assets/Pokeball_Load.svg';
 
 
-function PokemonDetails({ pokemon, onBack , refreshFavorites}) {
+function PokemonDetails({ pokemon, onBack , refreshFavorites, showAlert}) {
   const [pokemonDetails, setPokemonDetails] = useState(null);
   const [isCaught, setIsCaught] = useState(false);
   const [catchAttempt, setCatchAttempt] = useState(false);
@@ -21,12 +21,7 @@ function PokemonDetails({ pokemon, onBack , refreshFavorites}) {
     fetchData();
   }, [pokemon.id]);
 
-  useEffect(() => {
-    const updateIsCaught = async () => {
-      setIsCaught(isFavorite(pokemonDetails));
-    };
-    updateIsCaught();
-  }, [refreshFavorites]); // Dependency on refreshFavorites
+
   
   const tryToCatch = () => {
     setCatchAttempt(true);
@@ -46,9 +41,9 @@ function PokemonDetails({ pokemon, onBack , refreshFavorites}) {
       await addFavorite(pokemonDetails);
       refreshFavorites(); // Refresh the list of favorite Pokemons
       setIsCaught(true);
-      alert(`${pokemonDetails.name} was caught!`);
+      showAlert(`${capitalizeFirstLetter(pokemonDetails.name)} was caught!`);
     } else {
-      alert(`${pokemonDetails.name} escaped. Try again!`);
+      showAlert(`${capitalizeFirstLetter(pokemonDetails.name)} escaped. Try again!`);
     }
     setCatchAttempt(false);
   };
@@ -56,7 +51,7 @@ function PokemonDetails({ pokemon, onBack , refreshFavorites}) {
   const handleRelease = async () => {
     await removeFavorite(pokemonDetails);
     setIsCaught(false);
-    alert(`${pokemonDetails.name} was released!`);
+    showAlert(`${capitalizeFirstLetter(pokemonDetails.name)} was released!`);
     refreshFavorites();
   };
 
@@ -64,6 +59,7 @@ function PokemonDetails({ pokemon, onBack , refreshFavorites}) {
   const formattedId = "#" + pokemonDetails.id.toString().padStart(3, '0');
 
   return (
+    <div className="pokemon-details-card">
     <div className="pokemon-details">
       <img
         src={backArrow}
@@ -73,7 +69,7 @@ function PokemonDetails({ pokemon, onBack , refreshFavorites}) {
       />
       <div className="details-header">
         <h2>{capitalizeFirstLetter(pokemonDetails.name)}</h2>
-        <h5>{formattedId}</h5>
+        <h3>{formattedId}</h3>
       </div>
       <div className="details-body">
         <img src={pokemonDetails.sprites.other.home.front_default} alt={pokemonDetails.name} className="pokemon-image" />
@@ -85,6 +81,7 @@ function PokemonDetails({ pokemon, onBack , refreshFavorites}) {
           <p>Abilities: <strong>{pokemonDetails.abilities.map(ability => capitalizeFirstLetter(ability)).join(', ')}</strong></p>
         </div>
       </div>
+      
       {isCaught ? (
       <button onClick={handleRelease} className="catch-button">Release</button>
     ) : (
@@ -94,6 +91,7 @@ function PokemonDetails({ pokemon, onBack , refreshFavorites}) {
         </div>
       </button>
       )}
+    </div>
     </div>
   );
 }

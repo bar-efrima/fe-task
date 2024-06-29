@@ -1,10 +1,12 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import PokemonCard from './PokemonCard';
-import { removeFavorite } from '../services/favorites.service';
+import { removeFavorite, capitalizeFirstLetter} from '../services/favorites.service';
+
 import Filter from './Filter';
 
-function FavoritesSideBar({ onSelectPokemon, favorites, refreshFavorites }) {
+
+function FavoritesSideBar({ onSelectPokemon, favorites, refreshFavorites, showAlert }) {
   const [filteredFavorites, setFilteredFavorites] = useState(favorites);
 
   useEffect(() => {
@@ -18,7 +20,7 @@ function FavoritesSideBar({ onSelectPokemon, favorites, refreshFavorites }) {
   const handleRemove = async (pokemon) => {
     await removeFavorite(pokemon);
     refreshFavorites();
-    alert(`${pokemon.name} has been released!`);
+    showAlert(`${capitalizeFirstLetter(pokemon.name)} has been released!`);
     
   };
 
