@@ -4,13 +4,15 @@ import PokemonCard from './PokemonCard';
 
 const LIMIT = 21; // Number of Pokémon per page
 
-function PokemonList({ onSelectPokemon }) {
-  const [pokemons, setPokemons] = useState([]);
-  const [offset, setOffset] = useState(0); // Pagination offset
-  const [loading, setLoading] = useState(false); // Loading state
+// Component to display a list of Pokémon with pagination
+function PokemonList({ onSelectPokemon }) { 
+  const [pokemons, setPokemons] = useState([]); // state to store the list of Pokémon
+  const [offset, setOffset] = useState(0); // state to store pagination offset
+  const [loading, setLoading] = useState(false); // state to store loading state
 
+  // Function to fetch Pokémon data based on the current offset
   const fetchData = async (offset) => {
-    setLoading(true);
+    setLoading(true);  // Set loading state to true while fetching data
     const pokemonList = await getPokemons(LIMIT, offset);
     // Fetch the list of Pokemon
     const detailedPokemonList = await Promise.all(
@@ -18,20 +20,23 @@ function PokemonList({ onSelectPokemon }) {
         return await getPokemonDetailsByURL(pokemon.url);
       })
     );
-    setPokemons(detailedPokemonList);
+    setPokemons(detailedPokemonList); 
     setLoading(false);
   };
 
+ // useEffect to fetch data whenever the offset changes
   useEffect(() => {
     fetchData(offset);
   }, [offset]);
 
+   // useEffect hook to fetch data whenever the offset changes
   const handlePreviousPage = () => {
     if (offset > 0) {
       setOffset(offset - LIMIT);
     }
   };
 
+  // Function to handle the next page button click
   const handleNextPage = () => {
     setOffset(offset + LIMIT);
   };

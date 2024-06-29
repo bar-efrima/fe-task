@@ -20,7 +20,7 @@ export async function getPokemonDetailsByURL(url) {
   // Fetch the pokemon details from according to the url given in the list of pokemons
   try {
     const response = await axios.get(url);
-    // Transform the data to only include to include only the id, name, relevant sprites, types, weight, height, and abilities.
+    // Transform the data to extract only the required information
     const { id, name, sprites, types, weight, height, abilities } = response.data;
     // return the transformed data
     return { 
@@ -38,6 +38,7 @@ export async function getPokemonDetailsByURL(url) {
   }
 }
 
-export const capitalizeFirstLetter = (string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+// Capitalize the first letter of the string
+export const capitalizeFirstLetter = (string) => { 
+  return string.charAt(0).toUpperCase() + string.slice(1); 
 };

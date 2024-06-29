@@ -8,33 +8,38 @@ import FavoritesSideBar from './components/FavoritesSideBar';
 import Header from './components/Header';
 import Alert from './components/Alert'; 
 
-
+// Main App component
 function App() {
-  const [selectedPokemon, setSelectedPokemon] = useState(null);
-  const [favorites, setFavorites] = useState([]);
-  const [alertMessage, setAlertMessage] = useState('');
+  const [selectedPokemon, setSelectedPokemon] = useState(null); // State to store the currently selected Pokémon
+  const [favorites, setFavorites] = useState([]); // State to store the list of favorite Pokémon
+  const [alertMessage, setAlertMessage] = useState(''); // State to store the alert message
 
+  // useEffect to refresh favorites when the component mounts
   useEffect(() => {
     refreshFavorites();
   }, []);
 
-  const handleSelectPokemon = (pokemon) => { // Function to handle the selection of a Pokemon
+  // Function to handle the selection of a Pokemon
+  const handleSelectPokemon = (pokemon) => { 
     setSelectedPokemon(pokemon);
   };
 
-  const handleBackToList = () => {  // Function to handle the back button click
+  // Function to handle the back button click
+  const handleBackToList = () => {  
     setSelectedPokemon(null);
   };
 
-  const refreshFavorites = async () => { // Function to refresh the list of favorite Pokemons from local storage
+// Function to refresh the list of favorite Pokemons from local storage
+  const refreshFavorites = async () => { 
     const favoritePokemons = await getFavorites();
     setFavorites(favoritePokemons);
   };
 
+  // Function to show an alert message
   const showAlert = (message) => {
     setAlertMessage(message);
   };
-
+ // Function to close the alert message
   const closeAlert = () => {
     setAlertMessage('');
   };

@@ -4,14 +4,16 @@ import { addFavorite, removeFavorite, isFavorite } from '../services/favorites.s
 import backArrow from '../assets/Back.svg';
 import ball from '../assets/Pokeball_Load.svg';
 
-const MAX_ATTEMPTS = 10;
+const MAX_ATTEMPTS = 10; // Maximum number of catch attempts per day
 
+// Component to display detailed information about a selected Pokémon
 function PokemonDetails({ pokemon, onBack, refreshFavorites, showAlert, favorites }) {
   const [pokemonDetails, setPokemonDetails] = useState(null);
   const [isCaught, setIsCaught] = useState(false);
   const [catchAttempt, setCatchAttempt] = useState(false);
   const [attempts, setAttempts] = useState(0);
 
+  // Fetch Pokémon details when the component mounts or the Pokémon ID changes
   useEffect(() => {
     const fetchData = async () => {
       const url = `https://pokeapi.co/api/v2/pokemon/${pokemon.id}`;
@@ -19,16 +21,17 @@ function PokemonDetails({ pokemon, onBack, refreshFavorites, showAlert, favorite
       setPokemonDetails(pokemonData);
       setIsCaught(isFavorite(pokemonData));
     };
-
     fetchData();
   }, [pokemon.id]);
 
+  // Update the caught state when the Pokémon details or favorites change
   useEffect(() => {
     if (pokemonDetails) {
       setIsCaught(isFavorite(pokemonDetails));
     }
   }, [pokemonDetails, favorites]);
 
+  // Initialize or update the daily attempts from local storage
   useEffect(() => {
     const today = new Date().toISOString().split('T')[0];
     const storedData = JSON.parse(localStorage.getItem('dailyAttempts')) || {};
@@ -40,6 +43,7 @@ function PokemonDetails({ pokemon, onBack, refreshFavorites, showAlert, favorite
     }
   }, []);
 
+  // Update the daily attempts count in local storage
   const updateAttempts = () => {
     const today = new Date().toISOString().split('T')[0];
     const storedData = JSON.parse(localStorage.getItem('dailyAttempts')) || { date: today, attempts: 0 };
@@ -48,6 +52,7 @@ function PokemonDetails({ pokemon, onBack, refreshFavorites, showAlert, favorite
     setAttempts(storedData.attempts);
   };
 
+  // Simulate a catch attempt with a random success chance
   const tryToCatch = () => {
     setCatchAttempt(true);
     return new Promise((resolve) => {
@@ -69,7 +74,7 @@ function PokemonDetails({ pokemon, onBack, refreshFavorites, showAlert, favorite
     updateAttempts();
     if (success) {
       await addFavorite(pokemonDetails);
-      refreshFavorites(); // Refresh the list of favorite Pokemons
+      refreshFavorites(); 
       setIsCaught(true);
       showAlert(`${capitalizeFirstLetter(pokemonDetails.name)} was caught!`);
     } else {
@@ -78,6 +83,7 @@ function PokemonDetails({ pokemon, onBack, refreshFavorites, showAlert, favorite
     setCatchAttempt(false);
   };
 
+    // Handle the release button click
   const handleRelease = async () => {
     await removeFavorite(pokemonDetails);
     setIsCaught(false);
@@ -85,7 +91,9 @@ function PokemonDetails({ pokemon, onBack, refreshFavorites, showAlert, favorite
     refreshFavorites();
   };
 
-  if (!pokemonDetails) return <div>Loading...</div>;
+  // Render loading state if Pokémon details are not yet available
+  if (!pokemonDetails) return <div className='loading'>Loading...</div>;
+
   const formattedId = "#" + pokemonDetails.id.toString().padStart(3, '0');
 
   return (

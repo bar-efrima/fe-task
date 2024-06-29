@@ -32,6 +32,7 @@ export function removeFavorite(pokemon) {
     }, 500);
   });
 }
+// Function to check if a Pokémon is in the favorites list  
 export function isFavorite(pokemon) {
   const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
   return favorites.some(fav => fav.id === pokemon.id);

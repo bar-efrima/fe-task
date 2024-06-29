@@ -7,7 +7,7 @@ function Alert({ message, onClose }) {
       onClose();
     }, 3000); // Auto-close after 3 seconds
 
-    return () => clearTimeout(timer); // Cleanup the timer on unmount
+    return () => clearTimeout(timer); // Clear the timer when the component unmounts
   }, [onClose]);
 
   return (

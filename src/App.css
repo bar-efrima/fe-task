@@ -36,15 +36,14 @@ body {
   z-index: 1000;
 }
 
+h5 {
+  color: #8d8d8d;
+}
+
 .favorite-count {
   font-size: 1.25rem;
   font-weight: bold;
 }
-
-/* .app-logo {
-  width: 50px;
-  height: 50px;
-} */
 
 .app-header h1 {
   font-size: 2rem;
@@ -336,7 +335,7 @@ body {
 
 .search-bar input {
   padding-left: 80px; 
-  padding: 10px 10px 10px 35px; /* Add padding-left to accommodate the icon */;
+  padding: 10px 10px 10px 35px; 
   border-radius: 5px;
   font-size: 1rem;
   width: 100%;
@@ -348,7 +347,7 @@ body {
   font-size: 1rem;
 }
 
-/* Animation */
+/* Tilt Animation */
 @keyframes shake {
   0% {
     transform: translateX(0) rotate(0);
@@ -420,10 +419,6 @@ body {
   height: 100vh; 
   font-size: 2rem; 
   color: #007bff; 
-}
-
-h5 {
-  color: #8d8d8d;
 }
 
 /* Attempts Counter */
