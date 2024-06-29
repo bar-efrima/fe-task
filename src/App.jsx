@@ -36,7 +36,7 @@ function App() {
       <div className="main-content">
 
         {selectedPokemon ? (
-          <PokemonDetails pokemon={selectedPokemon} onBack={handleBackToList} refreshFavorites={refreshFavorites}/>
+          <PokemonDetails pokemon={selectedPokemon} onBack={handleBackToList} refreshFavorites={refreshFavorites} favorites={favorites}/>
         ) : (
           <PokemonList onSelectPokemon={handleSelectPokemon} />
         )}

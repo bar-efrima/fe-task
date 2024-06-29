@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import searchIcon from '../assets/Search.svg';
 
 function Filter({ onFilter }) {
   const [nameFilter, setNameFilter] = useState('');
@@ -12,7 +13,7 @@ function Filter({ onFilter }) {
 
   useEffect(() => {
     onFilter(nameFilter, typeFilter);
-  }, [nameFilter, typeFilter, onFilter]);
+  }, [nameFilter, typeFilter]);
 
   const handleNameChange = (e) => {
     setNameFilter(e.target.value);
@@ -24,12 +25,15 @@ function Filter({ onFilter }) {
 
   return (
     <div className="filter-container">
-      <input
-        type="text"
-        placeholder="Search by name"
-        value={nameFilter}
-        onChange={handleNameChange}
-      />
+      <div className="search-bar">
+        <img src={searchIcon} alt="Search" className="search-icon" />
+        <input
+          type="text"
+          placeholder=""
+          value={nameFilter}
+          onChange={handleNameChange}
+        />
+      </div>
       <select value={typeFilter} onChange={handleTypeChange}>
         {types.map(type => (
           <option key={type} value={type}>{type}</option>

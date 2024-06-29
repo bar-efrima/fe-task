@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { getPokemonDetailsByURL, capitalizeFirstLetter} from '../services/pokemon.service';
 import { addFavorite, removeFavorite, isFavorite } from '../services/favorites.service';
 import backArrow from '../assets/Back.svg';
+import ball from '../assets/Pokeball_Load.svg';
+
 
 function PokemonDetails({ pokemon, onBack , refreshFavorites}) {
   const [pokemonDetails, setPokemonDetails] = useState(null);
@@ -19,27 +21,32 @@ function PokemonDetails({ pokemon, onBack , refreshFavorites}) {
     fetchData();
   }, [pokemon.id]);
 
-
+  useEffect(() => {
+    const updateIsCaught = async () => {
+      setIsCaught(isFavorite(pokemonDetails));
+    };
+    updateIsCaught();
+  }, [refreshFavorites]); // Dependency on refreshFavorites
+  
   const tryToCatch = () => {
     setCatchAttempt(true);
     return new Promise((resolve) => {
       setTimeout(() => {
         const success = Math.random() > 0.1; // 50% chance of success
         resolve(success);
-      }, 2000); // Wait 1 second before resolving
+      }, 3000); // Wait 3 seconds before resolving
     });
   };
 
   // Function to handle the catch button click
   const handleCatch = async () => {
+    await new Promise((resolve) => setTimeout(resolve, 500)); // Wait 0.5 seconds before trying to catch
     const success = await tryToCatch();
     if (success) {
       await addFavorite(pokemonDetails);
       refreshFavorites(); // Refresh the list of favorite Pokemons
       setIsCaught(true);
       alert(`${pokemonDetails.name} was caught!`);
-      
-
     } else {
       alert(`${pokemonDetails.name} escaped. Try again!`);
     }
@@ -79,11 +86,13 @@ function PokemonDetails({ pokemon, onBack , refreshFavorites}) {
         </div>
       </div>
       {isCaught ? (
-        <button onClick={handleRelease} className="catch-button">Release</button>
-      ) : (
-        <button onClick={handleCatch} disabled={catchAttempt} className="catch-button">
-          {catchAttempt ? 'Attempting...' : 'Catch'}
-        </button>
+      <button onClick={handleRelease} className="catch-button">Release</button>
+    ) : (
+      <button onClick={handleCatch} disabled={catchAttempt} className={`catch-button `}>
+        <div className="pokeball-container">
+          {catchAttempt ? <img src={ball} alt="Catching" className="pokeball" /> : 'Catch'}
+        </div>
+      </button>
       )}
     </div>
   );

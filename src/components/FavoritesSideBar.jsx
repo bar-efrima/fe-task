@@ -18,7 +18,10 @@ function FavoritesSideBar({ onSelectPokemon, favorites, refreshFavorites }) {
   const handleRemove = async (pokemon) => {
     await removeFavorite(pokemon);
     refreshFavorites();
+    alert(`${pokemon.name} has been released!`);
+    
   };
+
   const handleFilter = (name, type) => {
     const filtered = favorites.filter((pokemon) => {
       const matchesName = pokemon.name.toLowerCase().includes(name.toLowerCase());

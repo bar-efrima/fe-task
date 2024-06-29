@@ -8,7 +8,7 @@ function PokemonCard({ pokemon, onClick}) {
       {/* <img src={pokemon.sprites.other.showdown.front_default} alt={pokemon.name} /> */}
       <img src={pokemon.sprites.other.home.front_default} alt={pokemon.name} />
       <h3>{capitalizeFirstLetter(pokemon.name)}</h3>
-      <h5>{formattedId}</h5>
+      <h5> {formattedId}</h5>
     </div>
   );
 }
